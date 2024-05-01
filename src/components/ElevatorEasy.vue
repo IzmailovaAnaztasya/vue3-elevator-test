@@ -106,7 +106,7 @@ function changeFloorsCount() {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .settings {
   margin-bottom: 20px;
 }

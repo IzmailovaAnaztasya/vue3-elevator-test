@@ -9,9 +9,9 @@ const router = createRouter({
       component: () => import('../views/ElevatorEasyView.vue')
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import('../views/AboutView.vue')
+      path: '/hard',
+      name: 'elevator-hard',
+      component: () => import('../views/ElevatorHardView.vue')
     }
   ]
 })
