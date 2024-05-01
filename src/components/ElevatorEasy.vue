@@ -2,7 +2,7 @@
   <div class="about">
     <div>
       <h2>Elevator Emulator</h2>
-      <p>Current position index: {{ liftPosition }}</p>
+      <p>Lift position index: {{ liftPosition }}</p>
       <p>Queue index: {{ liftQueue }}</p>
     </div>
     <div class="settings">
@@ -14,7 +14,7 @@
           id="floors"
           v-model.number="floorsCount"
           :disabled="isBusy"
-          @change="liftQueue = []"
+          @input="changeFloorsCount"
         />
       </label>
     </div>
@@ -84,18 +84,25 @@ function moveToPosition(position: number) {
   moveDirection.value = position > liftPosition.value ? 'up' : 'down'
   liftMoveTime.value = newTime
   liftPosition.value = position
-  liftQueue.value.shift()
 
   setTimeout(onPositionReached, newTime * 1000)
 }
 
 function onPositionReached() {
+  liftQueue.value.shift()
   isBlinking.value = true
   liftMoveTime.value = 0
 
   setTimeout(() => {
     isBlinking.value = false
   }, 3000)
+}
+
+function changeFloorsCount() {
+  if (liftPosition.value >= floorsCount.value - 1) {
+    liftPosition.value = floorsCount.value - 1
+  }
+  liftQueue.value = []
 }
 </script>
 
